@@ -1,6 +1,7 @@
 package com.mybeardapi.model;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,9 @@ public class Barbearia {
 	private String cnpj;
 	
 	private String email;
+	
+	@Embedded
+	private Endereco endereco;
 
 	public Long getId() {
 		return id;
@@ -65,6 +69,14 @@ public class Barbearia {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 }

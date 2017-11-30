@@ -1,0 +1,1 @@
+ALTER TABLE empresa add column cep character varying(9);
