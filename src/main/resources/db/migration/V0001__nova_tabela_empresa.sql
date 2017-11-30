@@ -10,5 +10,7 @@ create table empresa
   id bigint NOT NULL,
   razao_social character varying(100),
   nome_fantasia character varying(100),
-  CONSTRAINT taxa_pbm_loja_pkey PRIMARY KEY (id)
+  cnpj character varying(20),
+  email character varying(200),
+  CONSTRAINT empresa_pkey PRIMARY KEY (id)
 )
