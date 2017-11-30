@@ -18,4 +18,16 @@ public class BarbeariaService {
 		return barbeariaRepository.findAll();
 	}
 	
+	public Barbearia salvar(Barbearia entity) {
+		return barbeariaRepository.save(entity);
+	}
+	
+	public Barbearia findOne(Long id) {
+		return barbeariaRepository.findOne(id);
+	}
+	
+	public void removerBarbearia(Long id) {
+		barbeariaRepository.delete(id);
+	}
+	
 }
