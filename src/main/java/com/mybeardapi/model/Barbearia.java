@@ -3,21 +3,16 @@ package com.mybeardapi.model;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "empresa")
 @SequenceGenerator(name = "SEQUENCE", sequenceName = "empresa_id_seq")
-public class Barbearia {
+public class Barbearia extends AbstractModel {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="SEQUENCE")
-	private Long id;
-	
+	private static final long serialVersionUID = 1204189814591357576L;
+
 	@Column(name = "nome_fantasia")
 	private String nomeFantasia;
 	
@@ -30,14 +25,6 @@ public class Barbearia {
 	
 	@Embedded
 	private Endereco endereco;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getNomeFantasia() {
 		return nomeFantasia;
