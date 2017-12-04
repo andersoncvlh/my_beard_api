@@ -1,6 +1,6 @@
 # MyBeard Api #
 
-Projeto utiliza tecnologia Java 8, RestFul guiado pelo [modelo de maturidade de Richardson](http://www.nessauepa.com.br/blog/2013/07/traducao-modelo-de-maturidade-de-richardson/) e [HATEOAS](https://www.devmedia.com.br/hateoas-navegando-entre-recursos-com-rest/31279) para criação de uma API para o backend de um aplicativo mobile.
+Projeto utiliza tecnologia Java 8, RestFul guiado pelo [modelo de maturidade de Richardson](http://www.nessauepa.com.br/blog/2013/07/traducao-modelo-de-maturidade-de-richardson/) e utilizando navegação entre recursos com [HATEOAS](https://www.devmedia.com.br/hateoas-navegando-entre-recursos-com-rest/31279) para criação de uma API para o backend de um aplicativo mobile.
 
 ### How do I get set up? ###
 
