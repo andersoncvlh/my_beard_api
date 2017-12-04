@@ -2,6 +2,8 @@ package com.mybeardapi.resources;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mybeardapi.event.RecursoCriadoEvent;
 import com.mybeardapi.model.Barbearia;
 import com.mybeardapi.services.BarbeariaService;
 
 @RestController
 @RequestMapping("/barbearias")
-public class BarbeariaResource {
+public class BarbeariaResource extends AbstractResource {
 
 	@Autowired
 	private BarbeariaService barbeariaService;
@@ -30,7 +33,9 @@ public class BarbeariaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Barbearia> save(@RequestBody Barbearia nova) {
+	public ResponseEntity<Barbearia> save(@RequestBody Barbearia nova, HttpServletResponse response) {
+		Barbearia barbeariaSalva = barbeariaService.salvar(nova);
+		getPublisher().publishEvent(new RecursoCriadoEvent(this, response, barbeariaSalva.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(barbeariaService.salvar(nova));
 	}
 	
