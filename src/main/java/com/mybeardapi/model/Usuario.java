@@ -36,6 +36,11 @@ public class Usuario extends AbstractModel {
 		joinColumns = @JoinColumn(name = "codigo_usuario"), 
 		inverseJoinColumns = @JoinColumn(name ="codigo_permissao"))
 	private List<Permissao> permissoes;
+	
+	/**
+	 * admin
+	 */
+	private boolean root;
 
 	public String getNome() {
 		return nome;
@@ -67,6 +72,14 @@ public class Usuario extends AbstractModel {
 
 	public void setPermissoes(List<Permissao> permissoes) {
 		this.permissoes = permissoes;
+	}
+
+	public boolean isRoot() {
+		return root;
+	}
+
+	public void setRoot(boolean root) {
+		this.root = root;
 	}
 	
 	
