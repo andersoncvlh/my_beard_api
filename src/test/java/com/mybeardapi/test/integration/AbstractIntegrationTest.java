@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,8 +17,10 @@ import org.springframework.mock.http.MockHttpOutputMessage;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 import com.mybeardapi.MybeardApiApplication;
+import com.mybeardapi.test.oauth.OAuthHelper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(
@@ -31,9 +34,14 @@ public class AbstractIntegrationTest {
 	@Autowired
     protected MockMvc mockMvc;
 	
+	@Autowired
+	private OAuthHelper authHelper;
+	
 	@SuppressWarnings("rawtypes")
 	protected HttpMessageConverter mappingJackson2HttpMessageConverter;
 
+	protected RequestPostProcessor bearerToken;
+	
 	protected MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(),
 			Charset.forName("utf8"));
@@ -52,6 +60,11 @@ public class AbstractIntegrationTest {
 		MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();
 		this.mappingJackson2HttpMessageConverter.write(o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);
 		return mockHttpOutputMessage.getBodyAsString();
+	}
+	
+	@Before
+	public void setup() {
+		bearerToken = authHelper.addBearerToken("test", "test@test", "ROLE_USER");
 	}
 
 }
