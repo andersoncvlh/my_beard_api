@@ -3,6 +3,7 @@ package com.mybeardapi.resources;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,10 +34,10 @@ public class BarbeariaResource extends AbstractResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Barbearia> save(@RequestBody Barbearia nova, HttpServletResponse response) {
+	public ResponseEntity<Barbearia> save(@RequestBody @Valid Barbearia nova, HttpServletResponse response) {
 		Barbearia barbeariaSalva = barbeariaService.salvar(nova);
 		getPublisher().publishEvent(new RecursoCriadoEvent(this, response, barbeariaSalva.getId()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(barbeariaService.salvar(nova));
+		return ResponseEntity.status(HttpStatus.CREATED).body(barbeariaSalva);
 	}
 	
 	@GetMapping("/{id}")

@@ -22,6 +22,10 @@ public class PermissaoService {
 		return permissaoRepository.findAll();
 	}
 	
+	public List<Permissao> findAll() {
+		return permissaoRepository.findAll();
+	}
+	
 	public Permissao salvarPermissao(Permissao entity) {
 		return permissaoRepository.save(entity);
 	}
