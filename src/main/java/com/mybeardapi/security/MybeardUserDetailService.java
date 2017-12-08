@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.mybeardapi.model.Usuario;
+import com.mybeardapi.services.PermissaoService;
 import com.mybeardapi.services.UsuarioService;
 
 @Service
@@ -21,6 +22,9 @@ public class MybeardUserDetailService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private PermissaoService permissaoService;
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -30,11 +34,15 @@ public class MybeardUserDetailService implements UserDetailsService {
 	}
 
 	/**
+	 * Se o usuario for administrador, ele ira obter todas as permissoes
 	 * @param usuario
 	 * @return lista de permissões do usuário
 	 */
 	private Collection<? extends GrantedAuthority> getPermissoes(Usuario usuario) {
 		Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+		if (usuario.isRoot()) {
+			usuario.setPermissoes(permissaoService.findAll());
+		}
 		usuario.getPermissoes().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getDescricao().toUpperCase())));
 		return authorities;
 	}
