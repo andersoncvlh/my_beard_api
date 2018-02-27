@@ -6,7 +6,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	TestBarbeariaResource.class
+	TestBarbeariaResource.class,
+	TestPermissaoResource.class,
+	TestUsuarioResource.class,
+	TestTokenResource.class
 })
 public class SuiteClassesIntegracao {
 

@@ -5,6 +5,9 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "empresa")
@@ -13,14 +16,20 @@ public class Barbearia extends AbstractModel {
 
 	private static final long serialVersionUID = 1204189814591357576L;
 
+	@NotBlank
 	@Column(name = "nome_fantasia")
 	private String nomeFantasia;
 	
+	@NotBlank
 	@Column(name = "razao_social")
 	private String razaoSocial;
 	
+	@NotBlank
+	@Size(min=14, max=20)
 	private String cnpj;
 	
+	@NotBlank
+	@Size(min=5, max=200)
 	private String email;
 	
 	@Embedded

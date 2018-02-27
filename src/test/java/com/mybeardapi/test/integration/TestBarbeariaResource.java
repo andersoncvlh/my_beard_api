@@ -18,7 +18,7 @@ public class TestBarbeariaResource extends AbstractIntegrationTest{
     @Test
     public void test01FindNoContent() throws Exception {
     	mockMvc.perform(get("/barbearias")
-    			.contentType(contentType))
+    			.contentType(contentType).with(bearerToken))
     	.andExpect(status().isNoContent());
     }
     @Test
@@ -33,32 +33,32 @@ public class TestBarbeariaResource extends AbstractIntegrationTest{
     	
     	mockMvc.perform(
     			post("/barbearias")
-    			.contentType(contentType)
+    			.contentType(contentType).with(bearerToken)
     			.content(content))
     	.andExpect(status().isCreated());
     }
     @Test
     public void test03FindAll() throws Exception {
     	mockMvc.perform(get("/barbearias")
-    			.contentType(contentType))
+    			.contentType(contentType).with(bearerToken))
     	.andExpect(status().isOk());
     }
     @Test
     public void test04FindById() throws Exception {
     	mockMvc.perform(get("/barbearias/1")
-    			.contentType(contentType))
+    			.contentType(contentType).with(bearerToken))
     	.andExpect(status().isOk());
     }
     @Test
     public void test05FindByIdNoContent() throws Exception {
     	mockMvc.perform(get("/barbearias/111")
-    			.contentType(contentType))
+    			.contentType(contentType).with(bearerToken))
     	.andExpect(status().isNoContent());
     }
     @Test
     public void test06Delete() throws Exception {
     	mockMvc.perform(MockMvcRequestBuilders.delete("/barbearias/1")
-    			.contentType(contentType))
+    			.contentType(contentType).with(bearerToken))
     	.andExpect(status().isNoContent());
     }
    
